@@ -29,6 +29,3 @@ func myGuard() {
 
 myGuard()
 
-
-
-
