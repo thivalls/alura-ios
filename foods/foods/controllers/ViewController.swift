@@ -9,15 +9,41 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var alimentoTextField: UITextField!
-    @IBOutlet weak var felicidadeTextField: UITextField!
+    @IBOutlet weak var alimentoTextField: UITextField?
+    @IBOutlet weak var felicidadeTextField: UITextField?
     
     @IBAction func add(_ sender: Any) {
         
-        let alimento = alimentoTextField.text
-        let felicidade = felicidadeTextField.text
+//        if let alimento = alimentoTextField?.text{
+//            if let felicidadeInput = felicidadeTextField?.text, let felicidade = Int(felicidadeInput) {
+//                let refeicao = Refeicao(nome: alimento, felicidade: felicidade)
+//
+//                print("Comi o alimento \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
+//            }
+//        } else {
+//            print("Algum valor está errado tente novamente")
+//        }
         
-        print("Comi o alimento \(alimento) e fiquei com felicidade: \(felicidade)")
+//        if let alimentoInput = alimentoTextField?.text, let felicidadeInput = felicidadeTextField?.text {
+//            let alimento = alimentoInput
+//            if let felicidade = Int(felicidadeInput) {
+//                let refeicao = Refeicao(nome: alimento, felicidade: felicidade)
+//
+//                print("Comi o alimento \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
+//            }
+//        } else {
+//            print("Algum valor está errado tente novamente")
+//        }
+        
+        guard let alimento = alimentoTextField?.text else { return }
+        guard let felicidadeOriginal = felicidadeTextField?.text, let felicidade = Int(felicidadeOriginal) else { return }
+        
+        if felicidade > 5 { return }
+        
+        let refeicao = Refeicao(nome: alimento, felicidade: felicidade)
+        
+        print("Comi o alimento \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
+        
     }
 
 
