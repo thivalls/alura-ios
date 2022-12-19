@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol AdicionaRefeicaoViewControllerDelagate {
+    func add(_ refeicao: Refeicao)
+}
+
+class AdicionaRefeicaoViewController: UIViewController {
+    
+    var delegate: AdicionaRefeicaoViewControllerDelagate?
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet weak var felicidadeTextField: UITextField?
@@ -26,6 +32,10 @@ class ViewController: UIViewController {
         let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade)
         
         print("comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
+        
+        delegate?.add(refeicao)
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 
